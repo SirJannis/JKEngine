@@ -3,6 +3,21 @@
 #include "../Scene/GameObject.h"
 #include "TextComponent.h"
 
+JKEngine::FPSComponent::FPSComponent()
+{
+	
+}
+
+JKEngine::FPSComponent::~FPSComponent()
+{
+	m_pTextComponent = nullptr;
+}
+
+void JKEngine::FPSComponent::Init()
+{
+	m_pTextComponent = m_pGameObject->GetComponent<TextComponent>();
+}
+
 void JKEngine::FPSComponent::Update(const float msPerFrame)
 {
 	m_DeltaTime += msPerFrame;
@@ -10,7 +25,7 @@ void JKEngine::FPSComponent::Update(const float msPerFrame)
 	if (m_DeltaTime >= 1)
 	{
 		m_DeltaTime--;
-		m_pGameObject->GetComponent<TextComponent>()->SetText("FPS: " + std::to_string(m_FPS));
+		m_pTextComponent->SetText("FPS: " + std::to_string(m_FPS));
 		m_FPS = 0;
 	}
 }

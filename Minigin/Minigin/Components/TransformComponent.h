@@ -12,6 +12,8 @@ namespace JKEngine
 	{
 	public:
 		TransformComponent(glm::fvec3 pos = { 0.f, 0.f, 0.f });
+
+		void Init() override;
 		void Update(const float msPerSec) override;
 		void Render() const override;
 

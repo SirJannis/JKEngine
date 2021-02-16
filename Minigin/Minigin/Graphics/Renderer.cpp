@@ -1,7 +1,6 @@
 #include "MiniginPCH.h"
 #include "Renderer.h"
 #include <SDL.h>
-#include "../Managers/SceneManager.h"
 #include "Texture2D.h"
 //Imgui think about moving this
 #include "imgui.h"
@@ -30,6 +29,7 @@ void JKEngine::Renderer::Init(SDL_Window * window)
 	{
 		throw std::runtime_error(std::string("SDL_CreateRenderer Error: ") + SDL_GetError());
 	}
+	m_pSceneManagerInstance = SceneManager::GetInstance();
 
 	//Imgui Init, think about moving this
 	IMGUI_CHECKVERSION();
@@ -43,7 +43,7 @@ void JKEngine::Renderer::Render() const
 {
 	SDL_RenderClear(m_pRenderer);
 
-	SceneManager::GetInstance()->Render();
+	m_pSceneManagerInstance->Render();
 
 	//Imgui demo window, move this somewhere else!
 	bool showdemo = true;
@@ -70,26 +70,9 @@ void JKEngine::Renderer::Destroy()
 		SDL_DestroyRenderer(m_pRenderer);
 		m_pRenderer = nullptr;
 	}
+	m_pSceneManagerInstance = nullptr;
 }
 
-//void JKEngine::Renderer::RenderTexture(const Texture2D& texture, const float x, const float y) const
-//{
-//	SDL_Rect dst;
-//	dst.x = static_cast<int>(x);
-//	dst.y = static_cast<int>(y);
-//	SDL_QueryTexture(texture.GetSDLTexture(), nullptr, nullptr, &dst.w, &dst.h);
-//	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
-//}
-//
-//void JKEngine::Renderer::RenderTexture(const Texture2D& texture, const float x, const float y, const float width, const float height) const
-//{
-//	SDL_Rect dst;
-//	dst.x = static_cast<int>(x);
-//	dst.y = static_cast<int>(y);
-//	dst.w = static_cast<int>(width);
-//	dst.h = static_cast<int>(height);
-//	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
-//}
 
 void JKEngine::Renderer::RenderTexture(const Texture2D& texture, const SDL_Rect* dstRect, const SDL_Rect* srcRect, const float angle, const SDL_Point& pivot, const bool isMirroredHorizontal) const
 {

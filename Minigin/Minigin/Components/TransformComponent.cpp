@@ -7,6 +7,10 @@ JKEngine::TransformComponent::TransformComponent(glm::fvec3 pos)
 {
 }
 
+void JKEngine::TransformComponent::Init()
+{
+}
+
 void JKEngine::TransformComponent::Update(const float msPerSec)
 {
 	UNREFERENCED_PARAMETER(msPerSec);

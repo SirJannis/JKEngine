@@ -21,10 +21,9 @@ namespace JKEngine
 		template <class T>
 		T* GetComponent()
 		{
-			const type_info& ti = typeid(T);
 			for (BaseComponent* pComp : m_Components)
 			{
-				if (pComp && typeid(*pComp) == ti)
+				if (dynamic_cast<T*>(pComp))
 					return static_cast<T*>(pComp);
 			}
 			return nullptr;

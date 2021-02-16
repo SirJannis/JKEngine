@@ -10,6 +10,18 @@
 #include "glm/gtx/rotate_vector.hpp"
 #pragma warning(pop)
 
+JKEngine::RenderComponent::~RenderComponent()
+{
+	m_pTransformComponent = nullptr;
+	m_pRendererInstance = nullptr;
+}
+
+void JKEngine::RenderComponent::Init()
+{
+	m_pTransformComponent = m_pGameObject->GetComponent<TransformComponent>();
+	m_pRendererInstance = Renderer::GetInstance();
+}
+
 void JKEngine::RenderComponent::Update(const float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
@@ -19,7 +31,7 @@ void JKEngine::RenderComponent::Render() const
 {
 	for (const RenderTexture& texture : m_Textures)
 	{
-		const glm::fvec2& pos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
+		const glm::fvec2& pos = m_pTransformComponent->GetPosition();
 		SDL_Rect destRect{ int(pos.x), int(pos.y) };
 		SDL_QueryTexture(texture.Texture->GetSDLTexture(), nullptr, nullptr, &destRect.w, &destRect.h);
 
@@ -34,12 +46,12 @@ void JKEngine::RenderComponent::Render() const
 		SDL_Point pivot{ int(texture.Pivot.x * destRect.w), int(texture.Pivot.y * destRect.h) };
 		glm::fvec2 offset{ texture.Offset.x * destRect.w, texture.Offset.y * destRect.h };
 
-		offset = glm::rotate(offset, -m_pGameObject->GetComponent<TransformComponent>()->GetRotation() * float(M_PI) / 180.f);
+		offset = glm::rotate(offset, m_pTransformComponent->GetRotation() * float(M_PI) / 180.f);
 
 		destRect.x += int(offset.x) - pivot.x;
 		destRect.y += int(offset.y) + pivot.y;
 
-		Renderer::GetInstance()->RenderTexture(*texture.Texture, &destRect, &srcRect, m_pGameObject->GetComponent<TransformComponent>()->GetRotation() + texture.Angle, pivot, texture.IsMirrored);
+		m_pRendererInstance->RenderTexture(*texture.Texture, &destRect, &srcRect, m_pTransformComponent->GetRotation() + texture.Angle, pivot, texture.IsMirrored);
 
 	}
 }

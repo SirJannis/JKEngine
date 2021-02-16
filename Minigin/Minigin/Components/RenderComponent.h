@@ -7,6 +7,8 @@
 #pragma warning(pop)
 namespace JKEngine
 {
+	class Renderer;
+	class TransformComponent;
 	class Texture2D;
 	struct RenderTexture
 	{
@@ -20,11 +22,13 @@ namespace JKEngine
 		glm::fvec2 SrcDim;
 		float Angle;
 	};
+	
 	class RenderComponent final : public BaseComponent
 	{
 	public:
-		RenderComponent() = default;
+		~RenderComponent() override;
 
+		void Init() override;
 		void Update(const float msPerFrame) override;
 		void Render() const override;
 
@@ -32,5 +36,7 @@ namespace JKEngine
 	private:
 
 		std::vector<RenderTexture> m_Textures;
+		TransformComponent* m_pTransformComponent;
+		Renderer* m_pRendererInstance;
 	};
 }

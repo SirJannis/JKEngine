@@ -80,6 +80,8 @@ void JKEngine::Minigin::Cleanup()
 	Renderer::GetInstance()->Destroy();
 	SceneManager::Release();
 	InputManager::Release();
+	ResourceManager::Release();
+	Renderer::Release();
 	SDL_DestroyWindow(m_Window);
 	m_Window = nullptr;
 	SDL_Quit();

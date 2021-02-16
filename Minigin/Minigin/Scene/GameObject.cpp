@@ -40,4 +40,5 @@ void JKEngine::GameObject::AddComponent(BaseComponent* pComponent)
 	}
 	m_Components.push_back(pComponent);
 	pComponent->SetGameObject(this);
+	pComponent->Init();
 }

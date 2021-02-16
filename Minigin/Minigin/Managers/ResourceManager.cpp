@@ -55,10 +55,9 @@ JKEngine::Texture2D* JKEngine::ResourceManager::LoadTexture(const std::string& f
 	{
 		throw std::runtime_error(std::string("Failed to load texture: ") + SDL_GetError());
 	}
-	Texture2D* retText = new Texture2D(texture);
-	retText->SetPath(fullPath);
-	m_Textures.push_back(retText);
-	return retText;
+	m_Textures.push_back(new Texture2D(texture));
+	m_Textures.back()->SetPath(fullPath);
+	return m_Textures.back();
 }
 
 JKEngine::Font* JKEngine::ResourceManager::LoadFont(const std::string& file, unsigned int size)
@@ -69,7 +68,6 @@ JKEngine::Font* JKEngine::ResourceManager::LoadFont(const std::string& file, uns
 		if (pFont->GetPath() == fullPath)
 			return pFont;
 	}
-	Font* pRetFont = new Font(fullPath, size);
-	m_Fonts.push_back(pRetFont);
-	return pRetFont;
+	m_Fonts.push_back(new Font(fullPath, size));
+	return m_Fonts.back();
 }
