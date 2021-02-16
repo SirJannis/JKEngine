@@ -30,4 +30,8 @@
 *.out
 *.app
 
-*/.vs/
+Minigin/.vs/
+Minigin/Win32/
+Minigin/x64/
+Minigin/Minigin/Win32/
+Minigin/Minigin/x64/
