@@ -1,0 +1,34 @@
+﻿  MiniginPCH.cpp
+  FPSComponent.cpp
+  Font.cpp
+  Logger.cpp
+  RenderComponent.cpp
+  GameObject.cpp
+  InputManager.cpp
+  Main.cpp
+  Minigin.cpp
+  Renderer.cpp
+  ResourceManager.cpp
+  Scene.cpp
+  SceneManager.cpp
+  TextComponent.cpp
+  Texture2D.cpp
+  TransformComponent.cpp
+     Creating library E:\DAE\Programming4\w1\Minigin\x64\Release\Minigin.lib and object E:\DAE\Programming4\w1\Minigin\x64\Release\Minigin.exp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 467 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Minigin.vcxproj -> E:\DAE\Programming4\w1\Minigin\x64\Release\Minigin.exe
+  E:\DAE\Programming4\w1\Minigin\3rdParty\SDL2\lib\x64\SDL2.dll
+  1 File(s) copied
+  E:\DAE\Programming4\w1\Minigin\3rdParty\SDL2_image\lib\x64\libjpeg-9.dll
+  E:\DAE\Programming4\w1\Minigin\3rdParty\SDL2_image\lib\x64\libpng16-16.dll
+  E:\DAE\Programming4\w1\Minigin\3rdParty\SDL2_image\lib\x64\libtiff-5.dll
+  E:\DAE\Programming4\w1\Minigin\3rdParty\SDL2_image\lib\x64\libwebp-7.dll
+  E:\DAE\Programming4\w1\Minigin\3rdParty\SDL2_image\lib\x64\SDL2_image.dll
+  E:\DAE\Programming4\w1\Minigin\3rdParty\SDL2_image\lib\x64\zlib1.dll
+  6 File(s) copied
+  E:\DAE\Programming4\w1\Minigin\3rdParty\SDL2_ttf\lib\x64\libfreetype-6.dll
+  E:\DAE\Programming4\w1\Minigin\3rdParty\SDL2_ttf\lib\x64\SDL2_ttf.dll
+  2 File(s) copied
