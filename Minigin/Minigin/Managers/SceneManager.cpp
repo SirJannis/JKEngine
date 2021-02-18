@@ -4,9 +4,9 @@
 #include "InputManager.h"
 #include "../Helpers/Logger.h"
 
-void JKEngine::SceneManager::Update(const float SPerUpdate)
+void JKEngine::SceneManager::FixedUpdate(const float SPerUpdate)
 {
-	m_pActiveScene->Update(SPerUpdate);
+	m_pActiveScene->FixedUpdate(SPerUpdate);
 }
 
 void JKEngine::SceneManager::Render()
@@ -107,4 +107,9 @@ void JKEngine::SceneManager::RemoveScene(const Scene* pScene)
 			idx--;
 		}
 	}
+}
+
+void JKEngine::SceneManager::Update(float deltaTime)
+{
+	m_pActiveScene->Update(deltaTime);
 }

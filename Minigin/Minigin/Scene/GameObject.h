@@ -6,7 +6,8 @@ namespace JKEngine
 	class GameObject final
 	{
 	public:
-		void Update(float SPerUpdate);
+		void Update(float deltaTime);
+		void FixedUpdate(float SPerUpdate);
 		void Render() const;
 
 		GameObject() = default;

@@ -18,7 +18,8 @@ namespace JKEngine
 		~TextComponent() override;
 		
 		void Init() override;
-		void Update(const float SPerUpdate) override;
+		void Update(float deltaTime) override;
+		void FixedUpdate(const float SPerUpdate) override;
 		void Render() const override;
 
 

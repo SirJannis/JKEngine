@@ -11,7 +11,12 @@ void JKEngine::TransformComponent::Init()
 {
 }
 
-void JKEngine::TransformComponent::Update(const float SPerUpdate)
+void JKEngine::TransformComponent::Update(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+}
+
+void JKEngine::TransformComponent::FixedUpdate(const float SPerUpdate)
 {
 	UNREFERENCED_PARAMETER(SPerUpdate);
 }

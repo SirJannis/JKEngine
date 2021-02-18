@@ -65,7 +65,7 @@ JKEngine::Font* JKEngine::ResourceManager::LoadFont(const std::string& file, uns
 	const auto fullPath = m_DataPath + file;
 	for (Font* pFont : m_Fonts)
 	{
-		if (pFont->GetPath() == fullPath)
+		if (pFont->GetPath() == fullPath && pFont->GetSize() == size)
 			return pFont;
 	}
 	m_Fonts.push_back(new Font(fullPath, size));

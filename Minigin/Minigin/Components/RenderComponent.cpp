@@ -22,9 +22,14 @@ void JKEngine::RenderComponent::Init()
 	m_pRendererInstance = Renderer::GetInstance();
 }
 
-void JKEngine::RenderComponent::Update(const float deltaTime)
+void JKEngine::RenderComponent::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+}
+
+void JKEngine::RenderComponent::FixedUpdate(const float SPerUpdate)
+{
+	UNREFERENCED_PARAMETER(SPerUpdate);
 }
 
 void JKEngine::RenderComponent::Render() const

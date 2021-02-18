@@ -18,9 +18,9 @@ void JKEngine::TextComponent::Init()
 	m_pTransformComponent = m_pGameObject->GetComponent<TransformComponent>();
 }
 
-void JKEngine::TextComponent::Update(const float SPerUpdate)
+void JKEngine::TextComponent::Update(float deltaTime)
 {
-	UNREFERENCED_PARAMETER(SPerUpdate);
+	UNREFERENCED_PARAMETER(deltaTime);
 	if (m_NeedsUpdate)
 	{
 		const auto surf = TTF_RenderText_Blended(m_pFont->GetFont(), m_Text.c_str(), m_Color);
@@ -37,6 +37,11 @@ void JKEngine::TextComponent::Update(const float SPerUpdate)
 		m_pTexture->SetTexture(texture);
 		m_NeedsUpdate = false;
 	}
+}
+
+void JKEngine::TextComponent::FixedUpdate(const float SPerUpdate)
+{
+	UNREFERENCED_PARAMETER(SPerUpdate);
 }
 
 void JKEngine::TextComponent::Render() const

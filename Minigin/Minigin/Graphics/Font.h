@@ -19,6 +19,7 @@ namespace JKEngine
 		Font & operator= (const Font &&) = delete;
 		
 		const std::string& GetPath()const { return m_Path; }
+		const unsigned int GetSize() const { return m_Size; }
 
 	private:
 		std::string m_Path;

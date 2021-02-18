@@ -10,12 +10,14 @@ namespace JKEngine
 		FPSComponent();
 		~FPSComponent() override;
 		void Init() override;
-		void Update(const float SPerUpdate) override;
+		void Update(float deltaTime) override;
+		void FixedUpdate(const float SPerUpdate) override;
 		void Render() const override;
 
 	private:
 		float m_DeltaTime;
 		int m_FPS;
+		int m_Interval;
 		TextComponent* m_pTextComponent;
 	};
 }

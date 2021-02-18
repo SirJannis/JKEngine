@@ -12,11 +12,19 @@ JKEngine::GameObject::~GameObject()
 	}
 }
 
-void JKEngine::GameObject::Update(const float SPerUpdate)
+void JKEngine::GameObject::Update(float deltaTime)
 {
 	for (BaseComponent* pComp : m_Components)
 	{
-		pComp->Update(SPerUpdate);
+		pComp->Update(deltaTime);
+	}
+}
+
+void JKEngine::GameObject::FixedUpdate(const float SPerUpdate)
+{
+	for (BaseComponent* pComp : m_Components)
+	{
+		pComp->FixedUpdate(SPerUpdate);
 	}
 }
 

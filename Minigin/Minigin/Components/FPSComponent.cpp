@@ -4,6 +4,7 @@
 #include "TextComponent.h"
 
 JKEngine::FPSComponent::FPSComponent()
+	:m_Interval(1)
 {
 	
 }
@@ -18,16 +19,21 @@ void JKEngine::FPSComponent::Init()
 	m_pTextComponent = m_pGameObject->GetComponent<TextComponent>();
 }
 
-void JKEngine::FPSComponent::Update(const float SPerUpdate)
+void JKEngine::FPSComponent::Update(float deltaTime)
 {
-	m_DeltaTime += SPerUpdate;
-	m_FPS++;
-	if (m_DeltaTime >= 1)
+	m_DeltaTime += deltaTime;
+	//make this an average fps over all collected deltatimes instead of just this
+	m_FPS = static_cast<int>(m_Interval / deltaTime);
+	if (m_DeltaTime >= static_cast<float>(m_Interval))
 	{
-		m_DeltaTime--;
 		m_pTextComponent->SetText("FPS: " + std::to_string(m_FPS));
-		m_FPS = 0;
+		m_DeltaTime-= static_cast<float>(m_Interval);
 	}
+}
+
+void JKEngine::FPSComponent::FixedUpdate(const float SPerUpdate)
+{
+	UNREFERENCED_PARAMETER(SPerUpdate);
 }
 
 void JKEngine::FPSComponent::Render() const

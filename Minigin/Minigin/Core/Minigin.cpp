@@ -14,7 +14,7 @@
 using namespace std;
 using namespace std::chrono;
 
-const float JKEngine::Minigin::SPerUpdate = .016f;
+const float JKEngine::Minigin::SPerUpdate = .002f;
 
 void JKEngine::Minigin::Initialize()
 {
@@ -69,7 +69,7 @@ void JKEngine::Minigin::LoadGame() const
 	go = new GameObject();
 	go->AddComponent(new TransformComponent({ 40.f, 460.f, 0.f }));
 	go->AddComponent(new RenderComponent());
-	go->AddComponent(new TextComponent(" ", ResourceManager::GetInstance()->LoadFont("Lingua.otf", 24), { 255, 255,0 }));
+	go->AddComponent(new TextComponent(" ", ResourceManager::GetInstance()->LoadFont("Lingua.otf", 20), { 255, 255,0 }));
 	go->GetComponent<RenderComponent>()->AddTexture(go->GetComponent<TextComponent>()->GetTexture());
 	go->AddComponent(new FPSComponent());
 	scene.Add(go);
@@ -108,15 +108,16 @@ void JKEngine::Minigin::Run()
 		{
 			const auto currentTime = high_resolution_clock::now();
 			float deltaTime = duration<float>(currentTime - lastTime).count();
-			lastTime = currentTime;
 			lag += deltaTime;
 			doContinue = input->ProcessInput();
+			sceneManager->Update(deltaTime);
 			while(lag >= SPerUpdate)
 			{
-				sceneManager->Update(SPerUpdate);
+				sceneManager->FixedUpdate(SPerUpdate);
 				lag -= SPerUpdate;
 			}
 			renderer->Render();
+			lastTime = currentTime;
 		}
 	}
 
