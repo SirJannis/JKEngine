@@ -27,7 +27,6 @@ namespace JKEngine
 		Texture2D* GetTexture() const;
 
 	private:
-		bool m_NeedsUpdate;
 		std::string m_Text;
 		Font* m_pFont;
 		Texture2D* m_pTexture;

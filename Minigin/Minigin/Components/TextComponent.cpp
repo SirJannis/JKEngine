@@ -21,22 +21,6 @@ void JKEngine::TextComponent::Init()
 void JKEngine::TextComponent::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
-	if (m_NeedsUpdate)
-	{
-		const auto surf = TTF_RenderText_Blended(m_pFont->GetFont(), m_Text.c_str(), m_Color);
-		if (surf == nullptr)
-		{
-			throw std::runtime_error(std::string("Render text failed: ") + SDL_GetError());
-		}
-		auto texture = SDL_CreateTextureFromSurface(m_pRenderInstance->GetSDLRenderer(), surf);
-		if (texture == nullptr)
-		{
-			throw std::runtime_error(std::string("Create text texture from surface failed: ") + SDL_GetError());
-		}
-		SDL_FreeSurface(surf);
-		m_pTexture->SetTexture(texture);
-		m_NeedsUpdate = false;
-	}
 }
 
 void JKEngine::TextComponent::FixedUpdate(const float SPerUpdate)
@@ -56,7 +40,7 @@ void JKEngine::TextComponent::Render() const
 }
 
 JKEngine::TextComponent::TextComponent(const std::string& text, Font* pFont, SDL_Color color, const float angle, const glm::fvec2 pivot, const glm::fvec2 offset)
-	: m_NeedsUpdate(true), m_Text(text), m_pFont(pFont), m_pTexture(nullptr), m_Color(color), m_Angle{ angle }, m_Pivot{ pivot }, m_Offset{ offset }
+	: m_Text(text), m_pFont(pFont), m_pTexture(nullptr), m_Color(color), m_Angle{ angle }, m_Pivot{ pivot }, m_Offset{ offset }
 {
 	const auto surf = TTF_RenderText_Blended(m_pFont->GetFont(), m_Text.c_str(), color);
 	if (surf == nullptr)
@@ -71,7 +55,6 @@ JKEngine::TextComponent::TextComponent(const std::string& text, Font* pFont, SDL
 	}
 	SDL_FreeSurface(surf);
 	m_pTexture = new Texture2D(texture);
-	m_NeedsUpdate = false;
 }
 
 JKEngine::TextComponent::~TextComponent()
@@ -84,8 +67,20 @@ JKEngine::TextComponent::~TextComponent()
 
 void JKEngine::TextComponent::SetText(const std::string& text)
 {
+	//if possible don't create a new surface and texture every time
 	m_Text = text;
-	m_NeedsUpdate = true;
+	const auto surf = TTF_RenderText_Blended(m_pFont->GetFont(), m_Text.c_str(), m_Color);
+	if (surf == nullptr)
+	{
+		throw std::runtime_error(std::string("Render text failed: ") + SDL_GetError());
+	}
+	auto texture = SDL_CreateTextureFromSurface(m_pRenderInstance->GetSDLRenderer(), surf);
+	if (texture == nullptr)
+	{
+		throw std::runtime_error(std::string("Create text texture from surface failed: ") + SDL_GetError());
+	}
+	SDL_FreeSurface(surf);
+	m_pTexture->SetTexture(texture);
 }
 
 JKEngine::Texture2D* JKEngine::TextComponent::GetTexture() const
