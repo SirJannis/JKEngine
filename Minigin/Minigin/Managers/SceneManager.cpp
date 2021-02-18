@@ -4,9 +4,9 @@
 #include "InputManager.h"
 #include "../Helpers/Logger.h"
 
-void JKEngine::SceneManager::Update(const float msPerFrame)
+void JKEngine::SceneManager::Update(const float SPerUpdate)
 {
-	m_pActiveScene->Update(msPerFrame);
+	m_pActiveScene->Update(SPerUpdate);
 }
 
 void JKEngine::SceneManager::Render()

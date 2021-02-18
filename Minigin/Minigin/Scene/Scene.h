@@ -12,7 +12,7 @@ namespace JKEngine
 
 		const std::string& GetName() { return m_Name; }
 
-		void Update(float msPerUpdate);
+		void Update(float SPerUpdate);
 		void Render() const;
 
 		~Scene();

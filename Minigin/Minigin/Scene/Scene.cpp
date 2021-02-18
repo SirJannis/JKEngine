@@ -19,11 +19,11 @@ void Scene::Add(GameObject* pObject)
 	m_Objects.push_back(pObject);
 }
 
-void Scene::Update(float msPerUpdate)
+void Scene::Update(float SPerUpdate)
 {
 	for(GameObject* pObject : m_Objects)
 	{
-		pObject->Update(msPerUpdate);
+		pObject->Update(SPerUpdate);
 	}
 }
 

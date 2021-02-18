@@ -18,9 +18,9 @@ void JKEngine::TextComponent::Init()
 	m_pTransformComponent = m_pGameObject->GetComponent<TransformComponent>();
 }
 
-void JKEngine::TextComponent::Update(const float msPerFrame)
+void JKEngine::TextComponent::Update(const float SPerUpdate)
 {
-	UNREFERENCED_PARAMETER(msPerFrame);
+	UNREFERENCED_PARAMETER(SPerUpdate);
 	if (m_NeedsUpdate)
 	{
 		const auto surf = TTF_RenderText_Blended(m_pFont->GetFont(), m_Text.c_str(), m_Color);

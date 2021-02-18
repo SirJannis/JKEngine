@@ -17,7 +17,7 @@ namespace JKEngine
 		void RemoveScene(const Scene* pScene);
 
 
-		void Update(const float msPerFrame);
+		void Update(const float SPerUpdate);
 		void Render();
 	private:
 		std::vector<Scene*> m_Scenes;

@@ -12,11 +12,11 @@ JKEngine::GameObject::~GameObject()
 	}
 }
 
-void JKEngine::GameObject::Update(const float msPerUpdate)
+void JKEngine::GameObject::Update(const float SPerUpdate)
 {
 	for (BaseComponent* pComp : m_Components)
 	{
-		pComp->Update(msPerUpdate);
+		pComp->Update(SPerUpdate);
 	}
 }
 

@@ -11,9 +11,9 @@ void JKEngine::TransformComponent::Init()
 {
 }
 
-void JKEngine::TransformComponent::Update(const float msPerSec)
+void JKEngine::TransformComponent::Update(const float SPerUpdate)
 {
-	UNREFERENCED_PARAMETER(msPerSec);
+	UNREFERENCED_PARAMETER(SPerUpdate);
 }
 
 void JKEngine::TransformComponent::Render() const

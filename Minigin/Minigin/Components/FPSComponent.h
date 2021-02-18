@@ -10,7 +10,7 @@ namespace JKEngine
 		FPSComponent();
 		~FPSComponent() override;
 		void Init() override;
-		void Update(const float msPerFrame) override;
+		void Update(const float SPerUpdate) override;
 		void Render() const override;
 
 	private:

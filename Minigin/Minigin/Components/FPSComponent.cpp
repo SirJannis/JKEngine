@@ -18,9 +18,9 @@ void JKEngine::FPSComponent::Init()
 	m_pTextComponent = m_pGameObject->GetComponent<TextComponent>();
 }
 
-void JKEngine::FPSComponent::Update(const float msPerFrame)
+void JKEngine::FPSComponent::Update(const float SPerUpdate)
 {
-	m_DeltaTime += msPerFrame;
+	m_DeltaTime += SPerUpdate;
 	m_FPS++;
 	if (m_DeltaTime >= 1)
 	{

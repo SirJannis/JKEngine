@@ -10,7 +10,7 @@ namespace JKEngine
 		void Cleanup();
 		void Run();
 	private:
-		static const float MsPerUpdate; //16 / 1000 for 60 fps, 33 / 1000 for 30 fps
+		static const float SPerUpdate; //16 / 1000 for 60 fps, 33 / 1000 for 30 fps
 		SDL_Window* m_Window{};
 	};
 }

@@ -14,7 +14,7 @@
 using namespace std;
 using namespace std::chrono;
 
-const float JKEngine::Minigin::MsPerUpdate = .016f;
+const float JKEngine::Minigin::SPerUpdate = .016f;
 
 void JKEngine::Minigin::Initialize()
 {
@@ -111,10 +111,10 @@ void JKEngine::Minigin::Run()
 			lastTime = currentTime;
 			lag += deltaTime;
 			doContinue = input->ProcessInput();
-			while(lag >= MsPerUpdate)
+			while(lag >= SPerUpdate)
 			{
-				sceneManager->Update(MsPerUpdate);
-				lag -= MsPerUpdate;
+				sceneManager->Update(SPerUpdate);
+				lag -= SPerUpdate;
 			}
 			renderer->Render();
 		}
